@@ -8,11 +8,11 @@ See example of app:
 
 You can use this app in a way to send your picture url in a form of url get parameter named 'i'.
 
-http://givememycolors-kpendic.rhcloud.com/?i=https://nutty.io/images/nutty.png
+http://colors.mk-dizajn-it.hr/?i=https://nutty.io/images/nutty.png
 
 *?i=(here paste your picture url)*
 
-Only 'i' variable is acceptable, ofcorse if you don't want to see my pretty face all the time :)
+Only 'i' variable is acceptable, of course if you don't want to see my pretty face all the time :)
 
 And you will get your most used colors in picture.
 
