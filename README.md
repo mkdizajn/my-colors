@@ -10,7 +10,7 @@ You can use this app in a way to send your picture url in a form of url get para
 
 http://givememycolors-kpendic.rhcloud.com/?i=https://nutty.io/images/nutty.png
 
-?i=(here paste your picture url)
+_?i=_(here paste your picture url)
 
 Only 'i' variable is acceptable, ofcorse if you don't want to see my pretty face all the time :)
 
