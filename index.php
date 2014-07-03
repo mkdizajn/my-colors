@@ -2,8 +2,18 @@
 include_once("colors.php");
 $ex=new GetMostCommonColors();
 $img=isset($_GET['i']) ? $_GET['i'] : '';
+$imgg=isset($_GET['j']) ? $_GET['j'] : '';
 if($img==''){
 	$img = "https://avatars3.githubusercontent.com/u/767837?s=460";
+}
+if($imgg<>''){
+	$oo = array();
+	for ($i = 0; $i <= $how_many; $i++)
+	{
+		$oo[] = $colors_key[$i];
+	}
+	echo json_encode($oo);
+	exit();
 }
 $colors=$ex->Get_Color($img);
 $how_many=12;
