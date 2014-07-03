@@ -1,20 +1,26 @@
-# Give me my colors :~~
+## Give me my colors :~~
 
 ------
 
-## You can use this app in a way to give the url of your picture in a form of url get parameter.
-
-- See example here :
+See example of app:
 
 ![Alt text](https://raw.githubusercontent.com/mkdizajn/my-colors/master/ja.jpeg "My picture")
 
-- http://givememycolors-kpendic.rhcloud.com/?i=https://nutty.io/images/nutty.png
+You can use this app in a way to send your picture url in a form of url get parameter named 'i'.
+
+http://givememycolors-kpendic.rhcloud.com/?i=https://nutty.io/images/nutty.png
+
+?i=(here paste your picture url)
 
 Only 'i' variable is acceptable, ofcorse if you don't want to see my pretty face all the time :)
 
-Use it like this:
+And you will get your most used colors in picture.
 
-- http://givememycolors-kpendic.rhcloud.com/?i=https://nutty.io/images/nutty.png
+Columns are as folows:
+
+1. color sample
+2. percentage of color in picture
+3. hex color value
 
 that's it :)
 
