@@ -10,7 +10,7 @@ if($imgg<>''){
 	$oo = array();
 	for ($i = 0; $i <= $how_many; $i++)
 	{
-		$oo[] = $colors_key[$i];
+		array_push($oo, $colors_key[$i]);
 	}
 	echo json_encode($oo);
 	exit();

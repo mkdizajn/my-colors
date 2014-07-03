@@ -22,6 +22,12 @@ Columns are as folows:
 2. percentage of color in picture
 3. hex color value
 
+
+## Use it as a API
+
+Simply rename the parameter 'i' to 'j' :)
+
+-----------------
 that's it :)
 
 cheers, k.
