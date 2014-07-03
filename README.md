@@ -25,7 +25,25 @@ Columns are as folows:
 
 ## Use it as a API
 
-Simply rename the parameter 'i' to 'j' :)
+Simply rename the parameter 'i' to 'j', and you'll get nice little object of strings
+
+
+	[
+	  "302010",
+	  "503020",
+	  "b0b090",
+	  "909070",
+	  "808060",
+	  "90a080",
+	  "a0b080",
+	  "806040",
+	  "a02030",
+	  "907050",
+	  "c0a070",
+	  "b09060",
+	  "d0b080"
+	]
+
 
 -----------------
 that's it :)
