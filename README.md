@@ -1,33 +1,36 @@
-## Give me my colors :~~
+My colors
+=========
 
-------
+'My colors' is a service that will generate the most used colors in your picture. 
 
 See example of app:
 
 ![Alt text](https://raw.githubusercontent.com/mkdizajn/my-colors/master/ja.jpeg "My picture")
 
-You can use this app in a way to send your picture url in a form of url get parameter named 'i'.
+Using it
+----------
 
-http://colors.mk-dizajn-it.hr/?i=https://nutty.io/images/nutty.png
+Just sent parameter named 'i' and as a value direct url to your picture
+
+    http://colors.mk-dizajn-it.hr/?i=https://nutty.io/images/nutty.png
 
 *?i=(here paste your picture url)*
 
-Only 'i' variable is acceptable, of course if you don't want to see my pretty face all the time :)
+If you don't send the param, you'll see me :)
 
-And you will get your most used colors in picture.
-
-Columns are as folows:
+Columns meaning
+-----------------------
 
 1. color sample
 2. percentage of color in picture
 3. hex color value
 
+How to use it as a API
+------------------------------
 
-## Use it as a API
+Rename parameter **i** => **j** you'll get little object of strings in JSON
 
-Simply rename the parameter 'i' to 'j', and you'll get nice little object of strings
-
-
+```javascript
 	[
 	  "302010",
 	  "503020",
@@ -43,9 +46,18 @@ Simply rename the parameter 'i' to 'j', and you'll get nice little object of str
 	  "b09060",
 	  "d0b080"
 	]
+```
+
+CSS output of that colors
+----------------------------------
+
+Rename parameter **i** => **c** you'll get output like this
 
 
------------------
+
+
+
+- - -
 that's it :)
 
 cheers, k.
