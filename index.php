@@ -4,7 +4,7 @@ $ex=new GetMostCommonColors();
 $img=isset($_GET['i']) ? $_GET['i'] : '';
 $imgg=isset($_GET['j']) ? $_GET['j'] : '';
 if($img==''){
-	$img = "https://avatars3.githubusercontent.com/u/767837?s=460";
+	$img = 'https://www.google.hr/images/srpr/logo11w.png';//"https://avatars3.githubusercontent.com/u/767837?s=460";
 }
 if($imgg<>''){
 	$oo = array();
