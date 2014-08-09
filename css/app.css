@@ -7,7 +7,7 @@ body {
   overflow-x: hidden; /* Prevent scroll on narrow devices */
 }
 body {
-  padding-top: 70px;
+  /*padding-top: 70px;*/
 }
 footer {
   padding: 30px 0;
@@ -62,3 +62,15 @@ footer {
   max-width: 660px;
 }
 
+.navbar-brand > img { height: 25px; }
+.navbar-brand,
+.navbar-nav li a {
+    padding-top: 0;
+    line-height: 50px;
+    height: 50px;
+}
+
+#holder { border: 10px dashed #ccc; max-width: 500px; min-height: 300px; margin: 20px auto;}
+#holder.hover { border: 10px dashed #0c0; }
+#holder img { display: block; margin: 10px auto; }
+#holder p { margin: 10px; font-size: 14px; }
