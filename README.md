@@ -4,26 +4,16 @@ My colors
 'My colors' is a service that will generate the most used colors in your picture. 
 
 ```
-#  ██╗███╗   ███╗ ██████╗      ██╗   ██████╗███████╗███████╗
-#  ██║████╗ ████║██╔════╝      ╚██╗ ██╔════╝██╔════╝██╔════╝
-#  ██║██╔████╔██║██║  ███╗█████╗╚██╗██║     ███████╗███████╗
-#  ██║██║╚██╔╝██║██║   ██║╚════╝██╔╝██║     ╚════██║╚════██║
-#  ██║██║ ╚═╝ ██║╚██████╔╝     ██╔╝ ╚██████╗███████║███████║
-#  ╚═╝╚═╝     ╚═╝ ╚═════╝      ╚═╝   ╚═════╝╚══════╝╚══════╝
-#                                                           
+  ┬┌┬┐┌─┐   ┌─┐┌─┐┌─┐
+  │││││ ┬───│  └─┐└─┐
+  ┴┴ ┴└─┘   └─┘└─┘└─┘
 ```
 
 
 Using it
 ----------
 
-Just sent parameter named 'i' and as a value direct url to your picture
-
-    http://colors.mk-dizajn-it.hr/?i=https://nutty.io/images/nutty.png
-
-*?i=(here paste your picture url)*
-
-If you don't send the param, you'll see me :)
+Drag & drop image to canvas on a page and I will generate some code for embad-ing on your page
 
 Columns meaning
 -----------------------
