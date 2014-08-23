@@ -3,9 +3,16 @@ My colors
 
 'My colors' is a service that will generate the most used colors in your picture. 
 
-See example of app:
+```
+#  ██╗███╗   ███╗ ██████╗      ██╗   ██████╗███████╗███████╗
+#  ██║████╗ ████║██╔════╝      ╚██╗ ██╔════╝██╔════╝██╔════╝
+#  ██║██╔████╔██║██║  ███╗█████╗╚██╗██║     ███████╗███████╗
+#  ██║██║╚██╔╝██║██║   ██║╚════╝██╔╝██║     ╚════██║╚════██║
+#  ██║██║ ╚═╝ ██║╚██████╔╝     ██╔╝ ╚██████╗███████║███████║
+#  ╚═╝╚═╝     ╚═╝ ╚═════╝      ╚═╝   ╚═════╝╚══════╝╚══════╝
+#                                                           
+```
 
-![Alt text](https://raw.githubusercontent.com/mkdizajn/my-colors/master/ja.jpeg "My picture")
 
 Using it
 ----------
