@@ -75,7 +75,6 @@ footer {
 #holder img { display: block; margin: 10px auto; }
 #holder p { margin: 10px; font-size: 14px; }
 
-canvas {
+#c0 {
   margin: 40px;
-  /*display: inline;*/
 }
