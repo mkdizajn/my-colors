@@ -54,8 +54,14 @@ function readfiles(files) {
     }
 }
 
-/*
 
+Number.prototype.padLeft = function (n,str){
+    return Array(n-String(this).length+1).join(str||'0')+this;
+}
+
+
+/*
+main action
  */
 function previewfile(file) {
     if (tests.filereader === true && acceptedTypes[file.type] === true) {
@@ -65,22 +71,30 @@ function previewfile(file) {
             image.src = event.target.result;
 
             var canvas = document.getElementsByTagName("canvas")[0];
-			var ctx = canvas.getContext("2d");
-			ctx.drawImage(image,0,0,image.width / 2, image.height / 2);
-	        var imageData = ctx.getImageData(0, 0, image.width/2, image.height/2);
-	        var d = imageData.data;
+            var ctx = canvas.getContext("2d");
+            ctx.drawImage(image,0,0,image.width / 2, image.height / 2);
+            var imageData = ctx.getImageData(0, 0, image.width/2, image.height/2);
+            var d = imageData.data;
 
-	        r = g = b = v = [];
-            window.sumr = [];
-            window.sumg = [];
-            window.sumb = [];
-			for (var i = 0; i < d.length; i += 4) {
-			    r = d[i];        window.sumr.push( r );
-			    g = d[i + 1];    window.sumg.push( g );
-			    b = d[i + 2];    window.sumb.push( b );
-			    v = 0.2126 * r + 0.7152 * g + 0.0722 * b;
-			    d[i] = d[i + 1] = d[i + 2] = v
-			}
+            r = g = b = v = window.sumall = [];
+            var pad = "000";
+
+            for (var i = 0; i < d.length; i += 4) {
+                r = d[i];
+                g = d[i + 1];
+                b = d[i + 2];
+                window.sumall.push( (r).padLeft(3) + (g).padLeft(3) + (b).padLeft(3) );
+                v = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+                d[i] = d[i + 1] = d[i + 2] = v
+            }
+
+
+            var counts = {};
+
+            for(var i = 0; i< window.sumall.length; i++) {
+                var num = arr[i];
+                counts[num] = counts[num] ? counts[num]+1 : 1;
+            }
 
 			ctx.putImageData(imageData, 0,0);
 			// ctx.clearRect(0, 0, canvas.width, canvas.height);
