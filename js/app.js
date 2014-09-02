@@ -71,14 +71,14 @@ function previewfile(file) {
 	        var imageData = ctx.getImageData(0, 0, image.width/2, image.height/2);
 	        var d = imageData.data;
 
-	  //       r = g = b = v = [];
-			// for (var i = 0; i < d.length; i += 4) {
-			//     r = d[i];
-			//     g = d[i + 1];
-			//     b = d[i + 2];
-			//     v = 0.2126 * r + 0.7152 * g + 0.0722 * b;
-			//     d[i] = d[i + 1] = d[i + 2] = v
-			// }
+	        window.r = window.g = window.b = window.v = [];
+			for (var i = 0; i < d.length; i += 4) {
+			    r = d[i];
+			    g = d[i + 1];
+			    b = d[i + 2];
+			    v = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+			    d[i] = d[i + 1] = d[i + 2] = v
+			}
 
 			ctx.putImageData(imageData, 0,0);
 			// ctx.clearRect(0, 0, canvas.width, canvas.height);
