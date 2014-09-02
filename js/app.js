@@ -76,14 +76,13 @@ function previewfile(file) {
             var imageData = ctx.getImageData(0, 0, image.width/2, image.height/2);
             var d = imageData.data;
 
-            r = g = b = v = window.sumall = [];
-            var pad = "000";
+            r = g = b = v = temp = [];
 
             for (var i = 0; i < d.length; i += 4) {
                 r = d[i];
                 g = d[i + 1];
                 b = d[i + 2];
-                window.sumall.push( (r).padLeft(3) + (g).padLeft(3) + (b).padLeft(3) );
+                temp.push( (r).padLeft(3) + (g).padLeft(3) + (b).padLeft(3) );
                 v = 0.2126 * r + 0.7152 * g + 0.0722 * b;
                 d[i] = d[i + 1] = d[i + 2] = v
             }
@@ -91,11 +90,12 @@ function previewfile(file) {
 
             var counts = {};
 
-            for(var i = 0; i< window.sumall.length; i++) {
-                var num = window.sumall[i];
+            for(var i = 0; i< temp.length; i++) {
+                var num = temp[i];
                 counts[num] = counts[num] ? counts[num]+1 : 1;
             }
 
+            window.temp = temp;
             niz = keys( counts );
             niz.sort();
 
