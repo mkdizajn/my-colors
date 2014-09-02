@@ -96,7 +96,7 @@ function previewfile(file) {
                 counts[num] = counts[num] ? counts[num]+1 : 1;
             }
 
-            temp = keys( counts ).sort();
+            temp = Object.keys( counts ).sort();
             console.log( "rgb: " + temp[0] + " , " + temp[1] + " " + temp[2] );
 
 			ctx.putImageData(imageData, 0,0);
