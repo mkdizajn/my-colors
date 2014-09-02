@@ -67,15 +67,17 @@ function previewfile(file) {
             var canvas = document.getElementsByTagName("canvas")[0];
 			var ctx = canvas.getContext("2d");
 			ctx.drawImage(image,0,0,image.width / 2, image.height / 2);
-
 	        var imageData = ctx.getImageData(0, 0, image.width/2, image.height/2);
 	        var d = imageData.data;
 
-	        window.r = window.g = window.b = window.v = [];
+	        r = g = b = v = [];
+            window.sumr = [];
+            window.sumg = [];
+            window.sumb = [];
 			for (var i = 0; i < d.length; i += 4) {
-			    r = d[i];
-			    g = d[i + 1];
-			    b = d[i + 2];
+			    r = d[i];        window.sumr.push( r );
+			    g = d[i + 1];    window.sumg.push( g );
+			    b = d[i + 2];    window.sumb.push( b );
 			    v = 0.2126 * r + 0.7152 * g + 0.0722 * b;
 			    d[i] = d[i + 1] = d[i + 2] = v
 			}
