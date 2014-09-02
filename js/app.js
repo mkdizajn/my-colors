@@ -87,17 +87,18 @@ function previewfile(file) {
                 d[i] = d[i + 1] = d[i + 2] = v
             }
 
+            window.temp = temp;
 
-            var counts = {};
+            var counts = [];
 
             for(var i = 0; i< temp.length; i++) {
                 var num = temp[i];
                 counts[num] = counts[num] ? counts[num]+1 : 1;
             }
 
-            window.temp = temp;
-            niz = keys( counts );
-            niz.sort();
+            window.niz = keys( counts );
+            window.niz.sort().reverse();
+            console.log( "rgb: " + window.niz[0] + " , " + window.niz[1] + " " + window.niz[2] );
 
 			ctx.putImageData(imageData, 0,0);
 			// ctx.clearRect(0, 0, canvas.width, canvas.height);
