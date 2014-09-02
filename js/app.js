@@ -54,7 +54,9 @@ function readfiles(files) {
     }
 }
 
-
+/**
+ * [prototype.padLeft]
+ */
 Number.prototype.padLeft = function (n,str){
     return Array(n-String(this).length+1).join(str||'0')+this;
 }
@@ -72,8 +74,8 @@ function previewfile(file) {
 
             var canvas = document.getElementsByTagName("canvas")[0];
             var ctx = canvas.getContext("2d");
-            ctx.drawImage(image,0,0,image.width / 2, image.height / 2);
-            var imageData = ctx.getImageData(0, 0, image.width/2, image.height/2);
+            ctx.drawImage(image,0,0,image.width / 4, image.height / 4);
+            var imageData = ctx.getImageData(0, 0, image.width/4, image.height/4);
             var d = imageData.data;
 
             r = g = b = v = temp = [];
@@ -95,7 +97,7 @@ function previewfile(file) {
             }
 
             temp = Object.keys( counts ).sort().reverse();
-            console.log( "rgb: " + temp[0] + " , " + temp[1] + " " + temp[2] );
+            console.log( "rgb: " + temp[0] + " , " + temp[1] + " " + temp[2] + " " + temp[3] + " " + temp[4] );
 
 			ctx.putImageData(imageData, 0,0);
 			// ctx.clearRect(0, 0, canvas.width, canvas.height);
