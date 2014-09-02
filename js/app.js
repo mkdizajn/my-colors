@@ -92,9 +92,12 @@ function previewfile(file) {
             var counts = {};
 
             for(var i = 0; i< window.sumall.length; i++) {
-                var num = arr[i];
+                var num = window.sumall[i];
                 counts[num] = counts[num] ? counts[num]+1 : 1;
             }
+
+            niz = keys( counts );
+            niz.sort();
 
 			ctx.putImageData(imageData, 0,0);
 			// ctx.clearRect(0, 0, canvas.width, canvas.height);
