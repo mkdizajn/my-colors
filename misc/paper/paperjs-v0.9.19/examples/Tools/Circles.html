@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Circles</title>
+	<link rel="stylesheet" href="../css/style.css">
+	<script type="text/javascript" src="../../dist/paper-full.js"></script>
+	<script type="text/paperscript" canvas="canvas">
+			function onMouseDrag(event) {
+				// The radius is the distance between the position
+				// where the user clicked and the current position
+				// of the mouse.
+				var gra = function(min, max, dec) {
+					if (dec == 1) {
+						return Math.random() * (max - min) + min;
+					} else {
+						return Math.ceil(Math.random() * (max - min) + min);
+					}
+				}
+
+				var rgb = [];
+				rgb.push(gra(1, 250), gra(1, 250), gra(1, 250), gra(0.8, 1, 1).toFixed(1));
+				var path = new Path.Circle({
+					center: event.downPoint,
+					radius: (event.downPoint - event.point).length,
+					fillColor: "rgba(" + rgb.toString() + ")",
+					strokeColor: 'black'
+				});
+
+				// Remove this path on the next drag event:
+				path.removeOnDrag();
+			};
+	</script>
+</head>
+<body>
+	<canvas id="canvas" resize></canvas>
+</body>
+</html>

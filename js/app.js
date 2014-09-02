@@ -52,10 +52,11 @@ function readfiles(files) {
         if (tests.formdata) formData.append('file', files[i]);
         previewfile(files[i]);
     }
-
-
 }
 
+/*
+
+ */
 function previewfile(file) {
     if (tests.filereader === true && acceptedTypes[file.type] === true) {
         var reader = new FileReader();
@@ -257,94 +258,47 @@ function dd() {
 // ctx.closePath();
 
 
-/**
- * Image filters
- * @type {Object}
- */
+// ##################################
+// custom theme js
+// ##################################
 
+// jQuery for page scrolling feature - requires jQuery Easing plugin
+$(function() {
+    $('.page-scroll a').bind('click', function(event) {
+        var $anchor = $(this);
+        $('html, body').stop().animate({
+            scrollTop: $($anchor.attr('href')).offset().top
+        }, 700, 'easeInOutExpo');
+        event.preventDefault();
+    });
+});
 
-Filters = {};
-Filters.getPixels = function(img) {
-    var c = this.getCanvas(img.width, img.height);
-    var ctx = c.getContext('2d');
-    ctx.drawImage(img);
-    return ctx.getImageData(0, 0, c.width, c.height);
-};
+// Floating label headings for the contact form
+$(function() {
+    $("body").on("input propertychange", ".floating-label-form-group", function(e) {
+        $(this).toggleClass("floating-label-form-group-with-value", !! $(e.target).val());
+    }).on("focus", ".floating-label-form-group", function() {
+        $(this).addClass("floating-label-form-group-with-focus");
+    }).on("blur", ".floating-label-form-group", function() {
+        $(this).removeClass("floating-label-form-group-with-focus");
+    });
+});
 
-Filters.getCanvas = function(w, h) {
-    var c = document.createElement('canvas');
-    c.width = w;
-    c.height = h;
-    return c;
-};
+// Highlight the top nav as scrolling occurs
+$('body').scrollspy({
+    target: '.navbar-fixed-top'
+})
 
-Filters.filterImage = function(filter, image, var_args) {
-    var args = [this.getPixels(image)];
-    for (var i = 2; i < arguments.length; i++) {
-        args.push(arguments[i]);
-    }
-    return filter.apply(null, args);
-};
+// Closes the Responsive Menu on Menu Item Click
+$('.navbar-collapse ul li a').click(function() {
+    $('.navbar-toggle:visible').click();
+});
 
-
-Filters.grayscale = function(pixels, args) {
-    var d = pixels.data;
-    for (var i = 0; i < d.length; i += 4) {
-        var r = d[i];
-        var g = d[i + 1];
-        var b = d[i + 2];
-        // CIE luminance for the RGB
-        // The human eye is bad at seeing red and blue, so we de-emphasize them.
-        var v = 0.2126 * r + 0.7152 * g + 0.0722 * b;
-        d[i] = d[i + 1] = d[i + 2] = v
-    }
-    return pixels;
-};
-
-
-/**
- * dom image attach event handler
- * @type {[type]}
- */
-var img = $('#holder img');
-img.bind('change', function() {
-
-    var canvases = document.getElementsByTagName('canvas');
-    for (var i = 0; i < canvases.length; i++) {
-        var c = canvases[i];
-        c.parentNode.insertBefore(img.cloneNode(true), c);
-        c.style.display = 'none';
-    }
-
-    function runFilter(id, filter, arg1, arg2, arg3) {
-        var c = document.getElementById(id);
-        var s = c.previousSibling.style;
-        var b = c.parentNode.getElementsByTagName('button')[0];
-        if (b.originalText == null) {
-            b.originalText = b.textContent;
-        }
-        if (s.display == 'none') {
-            s.display = 'inline';
-            c.style.display = 'none';
-            b.textContent = b.originalText;
-        } else {
-            var idata = Filters.filterImage(filter, img, arg1, arg2, arg3);
-            c.width = idata.width;
-            c.height = idata.height;
-            var ctx = c.getContext('2d');
-            ctx.putImageData(idata, 0, 0);
-            s.display = 'none';
-            c.style.display = 'inline';
-            b.textContent = 'Restore original image';
-        }
-    }
-
-    grayscale = function() {
-        runFilter('grayscale', Filters.grayscale);
-    }
-
-    brightness = function() {
-        runFilter('brightness', Filters.brightness, 40);
-    }
-
-}, false);
+/* show netload */
+$( document ).ajaxStart(function() {
+    $('#netload').removeClass('hidden');
+});
+/* hide netload */
+$( document ).ajaxStop(function() {
+    $('#netload').addClass('hidden');
+});
