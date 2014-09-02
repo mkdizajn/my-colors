@@ -96,9 +96,8 @@ function previewfile(file) {
                 counts[num] = counts[num] ? counts[num]+1 : 1;
             }
 
-            window.niz = keys( counts );
-            window.niz.sort().reverse();
-            console.log( "rgb: " + window.niz[0] + " , " + window.niz[1] + " " + window.niz[2] );
+            temp = keys( counts ).sort();
+            console.log( "rgb: " + temp[0] + " , " + temp[1] + " " + temp[2] );
 
 			ctx.putImageData(imageData, 0,0);
 			// ctx.clearRect(0, 0, canvas.width, canvas.height);
