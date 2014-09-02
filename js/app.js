@@ -83,20 +83,18 @@ function previewfile(file) {
                 g = d[i + 1];
                 b = d[i + 2];
                 temp.push( (r).padLeft(3) + (g).padLeft(3) + (b).padLeft(3) );
-                v = 0.2126 * r + 0.7152 * g + 0.0722 * b;
-                d[i] = d[i + 1] = d[i + 2] = v
+                // v = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+                // d[i] = d[i + 1] = d[i + 2] = v
             }
 
-            window.temp = temp;
-
+            // remove dups,, 
             var counts = [];
-
             for(var i = 0; i< temp.length; i++) {
                 var num = temp[i];
                 counts[num] = counts[num] ? counts[num]+1 : 1;
             }
 
-            temp = Object.keys( counts ).sort();
+            temp = Object.keys( counts ).sort().reverse();
             console.log( "rgb: " + temp[0] + " , " + temp[1] + " " + temp[2] );
 
 			ctx.putImageData(imageData, 0,0);
