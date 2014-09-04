@@ -111,8 +111,15 @@
                     </article>
 
                     <article id='action' class="hidden">
+                        <div class="row colors">
+                            <div id="cl1" class="col-md-2 col-md-offset-1"></div>
+                            <div id="cl2" class="col-md-2"></div>
+                            <div id="cl3" class="col-md-2"></div>
+                            <div id="cl4" class="col-md-2"></div>
+                            <div id="cl5" class="col-md-2"></div>
+                        </div>
                         <p class="text-center">
-                            <button type="button" class="btn btn-primary btn-lg" onclick="grayscale()">Make some background</button>
+                            <button id="cls" type="button" class="btn btn-primary btn-lg">Clear area</button>
                         </p>
                     </article>
 
@@ -267,6 +274,11 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
+
+    <!-- d3 -->
+    <script src="js/d3.v3.min.js"></script>
+    <script src="js/trianglify-min.js"></script>
+
 
     <!-- Plugin JavaScript -->
     <script src="js/jquery.easing.min.js"></script>

@@ -447,3 +447,11 @@ footer .footer-below {
 #c0 {
   margin: 40px;
 }
+.colors #cl1,
+.colors #cl2,
+.colors #cl3,
+.colors #cl4,
+.colors #cl5{
+    height: 20px;
+    margin-bottom: 30px;
+}

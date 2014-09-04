@@ -1,5 +1,5 @@
 /*
-	d&d little
+    d&d little
  */
 var holder = document.getElementById('holder'),
     tests = {
@@ -42,7 +42,7 @@ if (tests.dnd) {
 }
 
 function addactions() {
-    $('#action').removeClass('hidden');
+    $('#action').toggleClass('hidden');
 }
 
 function readfiles(files) {
@@ -57,25 +57,45 @@ function readfiles(files) {
 /**
  * [prototype.padLeft]
  */
-Number.prototype.padLeft = function (n,str){
-    return Array(n-String(this).length+1).join(str||'0')+this;
+Number.prototype.padLeft = function(n, str) {
+    return Array(n - String(this).length + 1).join(str || '0') + this;
 }
 
+var gra = function(min, max, dec) {
+    if (dec == 1) {
+        return Math.random() * (max - min) + min;
+    } else {
+        return Math.ceil(Math.random() * (max - min) + min);
+    }
+}
 
 /*
 main action
  */
+
+var canvas = document.getElementsByTagName("canvas")[0];
+var ctx = canvas.getContext("2d");
+
+$( document ).on( 'click', '#cls', function(){
+    console.log( 'eto me..cisti' );
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    $('#cl1, #cl2, #cl3, #cl4, #cl5').css( 'background', 'white' );
+    addactions();
+} );
+
 function previewfile(file) {
     if (tests.filereader === true && acceptedTypes[file.type] === true) {
         var reader = new FileReader();
         reader.onload = function(event) {
+            var then = new Date();
             var image = new Image();
             image.src = event.target.result;
 
-            var canvas = document.getElementsByTagName("canvas")[0];
-            var ctx = canvas.getContext("2d");
-            ctx.drawImage(image,0,0,image.width / 4, image.height / 4);
-            var imageData = ctx.getImageData(0, 0, image.width/4, image.height/4);
+            var dim1 = (image.height > 250) ? +parseFloat(image.height / 250).toFixed(2) : 1;
+            var dim2 = Math.round(image.width / dim1);
+
+            ctx.drawImage(image, 0, 0, dim2, image.height / dim1);
+            var imageData = ctx.getImageData(0, 0, dim1, image.height / dim1);
             var d = imageData.data;
 
             r = g = b = v = temp = [];
@@ -84,26 +104,42 @@ function previewfile(file) {
                 r = d[i];
                 g = d[i + 1];
                 b = d[i + 2];
-                temp.push( (r).padLeft(3) + (g).padLeft(3) + (b).padLeft(3) );
+                temp.push((r).padLeft(3) + (g).padLeft(3) + (b).padLeft(3));
                 // v = 0.2126 * r + 0.7152 * g + 0.0722 * b;
                 // d[i] = d[i + 1] = d[i + 2] = v
             }
 
             // remove dups,, 
             var counts = [];
-            for(var i = 0; i< temp.length; i++) {
+            for (var i = 0; i < temp.length; i++) {
                 var num = temp[i];
-                counts[num] = counts[num] ? counts[num]+1 : 1;
+                counts[num] = counts[num] ? counts[num] + 1 : 1;
             }
 
-            temp = Object.keys( counts ).sort().reverse();
-            console.log( "rgb: " + temp[0] + " , " + temp[1] + " " + temp[2] + " " + temp[3] + " " + temp[4] );
+            temp = Object.keys(counts).sort().reverse(); // colors array distinct
 
-			ctx.putImageData(imageData, 0,0);
-			// ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.putImageData(imageData, 0, 0); // DRAW IMAGE
 
-            // image.width = 450; // a fake resize
-            // holder.appendChild(image);
+            rgbcolor = function(index) {
+                return 'rgb(' + temp[index].toString().substr(0,3) + ',' + temp[index].toString().substr(3,3) + ',' + temp[index].toString().substr(6,3) + ')' ;
+            }
+
+            hexcolor = function(index) {
+                var link = '#' + parseInt(temp[index].substr(0,3)).toString(16) + ',' + parseInt(temp[index].substr(3,3)).toString(16) + ',' + parseInt(temp[index].substr(6,3)).toString(16) ;
+                return link.replace(',','').replace(',','');
+            }
+
+            $('#cl1').css('background', rgbcolor(0) );
+            $('#cl2').css('background', rgbcolor(1) );
+            $('#cl3').css('background', rgbcolor(2) );
+            $('#cl4').css('background', rgbcolor(3) );
+            $('#cl5').css('background', rgbcolor(4) );
+
+            console.log('hex1 = ' + hexcolor( 1 ) );
+
+            makeback( [ hexcolor( 0 ), hexcolor( 3 ), hexcolor( 5 ), hexcolor( 8 ), hexcolor( 11 ) ] );
+
+            console.log('time: ' + (new Date() - then) + ' ms');
         };
 
         reader.readAsDataURL(file);
@@ -112,6 +148,33 @@ function previewfile(file) {
         console.log(file);
     }
 }
+
+
+
+function makeback( niz ){
+
+    var currentTrianglifier;
+    var currentPattern;
+
+    var palettes = [];
+    var currentXPalette;
+    var currentYPalette;
+
+    currentTrianglifier = new Trianglify({
+        "bleed": 150,
+        "cellsize": 150,
+        "cellpadding": 15,
+        "noiseIntensity": 0,
+        "x_gradient": niz ,
+        "y_gradient": niz 
+    });
+
+    currentPattern = currentTrianglifier.generate( $('body').width() , $('body').height() );
+    $('body').css({"background-image": currentPattern.dataUrl});
+
+}
+
+
 
 // http://annevankesteren.nl/test/html/canvas/demo/002.html
 /**
@@ -146,36 +209,36 @@ function doit(cls, brk, cnt, str, shp) {
         ctx.fillStyle = "rgba(" + rgb.toString() + ")";
         // triangle
         if (shp == "t") {
-        	if ( canvas.width - ( cx * 10 ) > 0 ){
-        		cx = i * 2;
-        	} else {
-        		cx  = 0;
-        		cy += 100;
-        	}
-            tmp = [ cx, cy ];
-            frs = [ gra( tmp[0] - 50 , tmp[0] + 50 ) ,  gra( tmp[1] - 50 , tmp[1] + 50 ) ];
-            ctx.moveTo( tmp[0], tmp[1]);
-            ctx.lineTo( frs[0], frs[1] );
-            ctx.lineTo( gra( tmp[0] - 200 , tmp[0] + 200 ) ,  gra( tmp[1] - 200 , tmp[1] + 200 ) );
-            ctx.lineTo( tmp[0], tmp[1] );
-            ctx.lineTo( frs[0], frs[1] );
-			ctx.lineJoin = "round";
-			ctx.lineWidth = 30;
-			ctx.stroke();
+            if (canvas.width - (cx * 10) > 0) {
+                cx = i * 2;
+            } else {
+                cx = 0;
+                cy += 100;
+            }
+            tmp = [cx, cy];
+            frs = [gra(tmp[0] - 50, tmp[0] + 50), gra(tmp[1] - 50, tmp[1] + 50)];
+            ctx.moveTo(tmp[0], tmp[1]);
+            ctx.lineTo(frs[0], frs[1]);
+            ctx.lineTo(gra(tmp[0] - 200, tmp[0] + 200), gra(tmp[1] - 200, tmp[1] + 200));
+            ctx.lineTo(tmp[0], tmp[1]);
+            ctx.lineTo(frs[0], frs[1]);
+            ctx.lineJoin = "round";
+            ctx.lineWidth = 30;
+            ctx.stroke();
             ctx.fill();
-		// bezier curve
+            // bezier curve
         } else if (shp == "b") {
-            tmp0 = [gra(1, canvas.width ), gra(1, canvas.height )]; // start
-            tmp3 = [gra(1, canvas.width ), gra(1, canvas.height )]; // end point
-            tmp1 = [gra( tmp0[0] + 200, tmp0[0] - 200  ), gra( tmp0[1] + 200, tmp0[1] - 200 )]; // first poing
-            tmp2 = [gra( tmp3[0] + 200, tmp3[0] - 200  ), gra( tmp3[1] + 200, tmp3[1] - 200 )]; // second point
-            tmp4 = [gra( tmp3[0] + 200, tmp3[0] - 200  ), gra( tmp3[1] + 200, tmp3[1] - 200 )]; // 5-th point
-            ctx.moveTo( tmp0[0], tmp0[1] );
-            ctx.bezierCurveTo( tmp1[0], tmp1[1], tmp2[0], tmp2[1], tmp3[0], tmp3[1] );
-            ctx.bezierCurveTo( tmp3[0], tmp3[1], tmp4[0], tmp4[1], tmp0[0], tmp0[1] );
+            tmp0 = [gra(1, canvas.width), gra(1, canvas.height)]; // start
+            tmp3 = [gra(1, canvas.width), gra(1, canvas.height)]; // end point
+            tmp1 = [gra(tmp0[0] + 200, tmp0[0] - 200), gra(tmp0[1] + 200, tmp0[1] - 200)]; // first poing
+            tmp2 = [gra(tmp3[0] + 200, tmp3[0] - 200), gra(tmp3[1] + 200, tmp3[1] - 200)]; // second point
+            tmp4 = [gra(tmp3[0] + 200, tmp3[0] - 200), gra(tmp3[1] + 200, tmp3[1] - 200)]; // 5-th point
+            ctx.moveTo(tmp0[0], tmp0[1]);
+            ctx.bezierCurveTo(tmp1[0], tmp1[1], tmp2[0], tmp2[1], tmp3[0], tmp3[1]);
+            ctx.bezierCurveTo(tmp3[0], tmp3[1], tmp4[0], tmp4[1], tmp0[0], tmp0[1]);
             ctx.fill();
-        // circle
-        } else if ( shp == "c" ){
+            // circle
+        } else if (shp == "c") {
             ctx.arc(gra(1, canvas.width), gra(1, canvas.width), gra(1, 200), gra(0.1, 0.8, 1).toFixed(1), 2 * Math.PI);
             ctx.fill();
         }
@@ -295,7 +358,7 @@ $(function() {
 // Floating label headings for the contact form
 $(function() {
     $("body").on("input propertychange", ".floating-label-form-group", function(e) {
-        $(this).toggleClass("floating-label-form-group-with-value", !! $(e.target).val());
+        $(this).toggleClass("floating-label-form-group-with-value", !!$(e.target).val());
     }).on("focus", ".floating-label-form-group", function() {
         $(this).addClass("floating-label-form-group-with-focus");
     }).on("blur", ".floating-label-form-group", function() {
@@ -314,10 +377,10 @@ $('.navbar-collapse ul li a').click(function() {
 });
 
 /* show netload */
-$( document ).ajaxStart(function() {
+$(document).ajaxStart(function() {
     $('#netload').removeClass('hidden');
 });
 /* hide netload */
-$( document ).ajaxStop(function() {
+$(document).ajaxStop(function() {
     $('#netload').addClass('hidden');
 });
