@@ -96,6 +96,7 @@ function previewfile(file) {
 
             ctx.drawImage(image, 0, 0, dim2, image.height / dim1);
             var imageData = ctx.getImageData(0, 0, dim1, image.height / dim1);
+            var imageData1 = ctx.getImageData(0, 0, image.width, image.height );
             var d = imageData.data;
 
             r = g = b = v = temp = [];
@@ -116,9 +117,9 @@ function previewfile(file) {
                 counts[num] = counts[num] ? counts[num] + 1 : 1;
             }
 
-            temp = Object.keys(counts).sort().reverse(); // colors array distinct
+            temp = Object.keys(counts).sort();//.reverse(); // colors array distinct
 
-            ctx.putImageData(imageData, 0, 0); // DRAW IMAGE
+            ctx.putImageData(imageData1, 0, 0); // DRAW IMAGE
 
             rgbcolor = function(index) {
                 return 'rgb(' + temp[index].toString().substr(0,3) + ',' + temp[index].toString().substr(3,3) + ',' + temp[index].toString().substr(6,3) + ')' ;

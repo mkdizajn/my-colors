@@ -447,13 +447,13 @@ footer .footer-below {
 #c0 {
   margin: 40px;
 }
-.colors #cl1,
-.colors #cl2,
-.colors #cl3,
-.colors #cl4,
-.colors #cl5{
-    height: 20px;
+.row.colors{
+    padding: 5px 0;
+    background-color: white;
     margin-bottom: 30px;
+}
+.colors div{
+    height: 20px;
 }
 #c0 image{
     border-radius: 5px;
