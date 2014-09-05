@@ -42,7 +42,7 @@ if (tests.dnd) {
 }
 
 function addactions() {
-    $('#action').toggleClass('hidden');
+    $('#action').removeClass('hidden');
 }
 
 function readfiles(files) {
@@ -80,7 +80,7 @@ $( document ).on( 'click', '#cls', function(){
     console.log( 'eto me..cisti' );
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     $('#cl1, #cl2, #cl3, #cl4, #cl5').css( 'background', 'white' );
-    addactions();
+    $('#app-main').css({"background-image": 'none'});
 } );
 
 function previewfile(file) {
@@ -138,7 +138,6 @@ function previewfile(file) {
             console.log('hex1 = ' + hexcolor( 1 ) );
 
             makeback( [ hexcolor( 0 ), hexcolor( 3 ), hexcolor( 5 ), hexcolor( 8 ), hexcolor( 11 ) ] );
-
             console.log('time: ' + (new Date() - then) + ' ms');
         };
 
@@ -170,7 +169,7 @@ function makeback( niz ){
     });
 
     currentPattern = currentTrianglifier.generate( $('body').width() , $('body').height() );
-    $('body').css({"background-image": currentPattern.dataUrl});
+    $('#app-main').css({"background-image": currentPattern.dataUrl});
 
 }
 
