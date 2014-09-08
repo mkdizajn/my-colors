@@ -76,14 +76,45 @@ main action
 var canvas = document.getElementsByTagName("canvas")[0];
 var ctx = canvas.getContext("2d");
 
+/**
+ * clear area and back
+ * @return {[type]} [clear html]
+ */
 $( document ).on( 'click', '#cls', function(){
-    console.log( 'eto me..cisti' );
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    $('#cl1, #cl2, #cl3, #cl4, #cl5').css( 'background', 'white' );
-    $('#app-main').css({"background-image": 'none'});
+    $('#action').hide();
 } );
 
-function previewfile(file) {
+/**
+ * [make background for app div]
+ * @param  {[type]} niz [array of colours]
+ * @return {[type]}     [svg back]
+ */
+makeback = function( niz ){
+
+    var currentTrianglifier;
+    var currentPattern;
+
+    var palettes = [];
+    var currentXPalette;
+    var currentYPalette;
+
+    currentTrianglifier = new Trianglify({
+        "bleed": 150,
+        "cellsize": 150,
+        "cellpadding": 15,
+        "noiseIntensity": 0,
+        "x_gradient": niz ,
+        "y_gradient": niz 
+    });
+
+    currentPattern = currentTrianglifier.generate( $('#app-main').width() , $('#app-main').height() + 200 );
+    $('#app-main').css({"background-image": currentPattern.dataUrl});
+    $('#app-main #row .col-lg-12').children().addClass('hidden');
+    $('#action').show();
+}
+
+previewfile = function(file) {
     if (tests.filereader === true && acceptedTypes[file.type] === true) {
         var reader = new FileReader();
         reader.onload = function(event) {
@@ -99,34 +130,32 @@ function previewfile(file) {
             var imageData1 = ctx.getImageData(0, 0, image.width, image.height );
             var d = imageData.data;
 
-            r = g = b = v = temp = [];
+            var r = g = b = v = temp = [];
 
             for (var i = 0; i < d.length; i += 4) {
                 r = d[i];
                 g = d[i + 1];
                 b = d[i + 2];
                 temp.push((r).padLeft(3) + (g).padLeft(3) + (b).padLeft(3));
-                // v = 0.2126 * r + 0.7152 * g + 0.0722 * b;
-                // d[i] = d[i + 1] = d[i + 2] = v
             }
 
             // remove dups,, 
-            var counts = [];
+            nodups = counts = [];
             for (var i = 0; i < temp.length; i++) {
                 var num = temp[i];
                 counts[num] = counts[num] ? counts[num] + 1 : 1;
             }
 
-            temp = Object.keys(counts).sort();//.reverse(); // colors array distinct
+            nodups = Object.keys(counts).sort();//.reverse(); // colors array distinct
 
             ctx.putImageData(imageData1, 0, 0); // DRAW IMAGE
 
             rgbcolor = function(index) {
-                return 'rgb(' + temp[index].toString().substr(0,3) + ',' + temp[index].toString().substr(3,3) + ',' + temp[index].toString().substr(6,3) + ')' ;
+                return 'rgb(' + nodups[index].toString().substr(0,3) + ',' + nodups[index].toString().substr(3,3) + ',' + nodups[index].toString().substr(6,3) + ')' ;
             }
 
             hexcolor = function(index) {
-                var link = '#' + parseInt(temp[index].substr(0,3)).toString(16) + ',' + parseInt(temp[index].substr(3,3)).toString(16) + ',' + parseInt(temp[index].substr(6,3)).toString(16) ;
+                var link = '#' + parseInt(nodups[index].substr(0,3)).toString(16) + ',' + parseInt(nodups[index].substr(3,3)).toString(16) + ',' + parseInt(temp[index].substr(6,3)).toString(16) ;
                 return link.replace(',','').replace(',','');
             }
 
@@ -148,32 +177,6 @@ function previewfile(file) {
         console.log(file);
     }
 }
-
-
-
-function makeback( niz ){
-
-    var currentTrianglifier;
-    var currentPattern;
-
-    var palettes = [];
-    var currentXPalette;
-    var currentYPalette;
-
-    currentTrianglifier = new Trianglify({
-        "bleed": 150,
-        "cellsize": 150,
-        "cellpadding": 15,
-        "noiseIntensity": 0,
-        "x_gradient": niz ,
-        "y_gradient": niz 
-    });
-
-    currentPattern = currentTrianglifier.generate( $('body').width() , $('body').height() );
-    $('#app-main').css({"background-image": currentPattern.dataUrl});
-
-}
-
 
 
 // http://annevankesteren.nl/test/html/canvas/demo/002.html
