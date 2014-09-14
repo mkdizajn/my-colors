@@ -99,14 +99,14 @@
 
 				<div class="col-lg-12 text-center">
                     <h2>App</h2>
-                    <hr class="star-primary">
+                    <hr class="">
                 </div>
 
                 <div class="col-lg-6 col-lg-offset-3">
                     
                     <article id='zone'>
-                        <div id="holder" onchange="previewImage(this)">
-                            <canvas id="c0" width="530" height="250"></canvas>
+                        <div id="holder">
+                            <canvas id="c0" width="500" height="250"></canvas>
                         </div> 
                     </article>
 
@@ -119,11 +119,12 @@
                             <div id="cl5" class="col-md-2"></div>
                         </div>
                         <p class="text-center">
-                            <button id="cls" type="button" class="btn btn-primary btn-lg">Clear area</button>
+                            <button id="cls" type="button" class="btn btn-primary btn-sm">Randomize colors</button>
+                            <a id="dwl" type="button" class="btn btn-success btn-sm" target="_blank">Download pattern</a>
                         </p>
                     </article>
 
-                    <h4>Drag an image from your desktop on to the drop zone above </h4>
+                    <pre id="excerpt">Drag an image from your desktop on to the drop zone above </pre>      
                 </div>                
 
             </div>
