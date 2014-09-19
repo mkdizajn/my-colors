@@ -160,8 +160,7 @@ mk.com = {
             reader.readAsDataURL(file);
         } // end if tests are ok!
     },  // end process 
-
-    processvoronoi = function(){
+    processvoronoi: function(){
 
         var w = $('#app-main').width(),//window.innerWidth > 960 ? 960 : (window.innerWidth || 960),
             h = $('#app-main').height(),//window.innerHeight > 500 ? 500 : (window.innerHeight || 500),
@@ -204,7 +203,7 @@ mk.com = {
         });
 
     },
-    update = function(e) {
+    update: function(e) {
         path = path.data(d3_geom_voronoi(vertices))
         path.enter().append("path")
             // drag node by dragging cell
