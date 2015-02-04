@@ -169,8 +169,8 @@ mk.com = {
                 window.nodups = Object.keys(counts).sort().reverse(); // colors array distinct
 
                 if( nodups.length > 5 ){
-                    mk.com.ctx.save();
                     mk.com.ctx.clearRect( 0 , 0 , 500, 500 );
+                    mk.com.ctx.save();
                     mk.com.ctx.putImageData(imageData1, 0, 0); // DRAW IMAGE on c0 canvas
                     mk.com.makeback();
                     $('#excerpt').text('');
