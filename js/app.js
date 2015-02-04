@@ -1,3 +1,25 @@
+/*
+License:
+
+    WooCommerce simple contest plugin does what,, it gives you power to run
+    simple constest where people can buy licence to submit 
+    their work to be publicly viewable and rateable by other folks.. 
+    Two required plugins are needed to run the contest: ACF & WOOCOMMERCE
+    Copyright (C) 2014 Kresimir Pendic
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
 
 // GLOBAL namespace
 var mk = mk || {}; d = document;
@@ -115,7 +137,6 @@ mk.com = {
         if (this.tests.filereader === true && this.acceptedTypes[file.type] === true) {
             var reader = new FileReader();
             reader.onload = function(event) {
-                var then = new Date();
                 var image = new Image();
                 image.src = event.target.result;
 
@@ -144,15 +165,15 @@ mk.com = {
                     var num = temp[i];
                     counts[num] = counts[num] ? counts[num] + 1 : 1;
                 }
-
-                nodups = Object.keys(counts).sort().reverse(); // colors array distinct
+                // global var that will be filled with colors from your image
+                window.nodups = Object.keys(counts).sort().reverse(); // colors array distinct
 
                 if( nodups.length > 5 ){
                     mk.com.ctx.save();
-                    mk.com.ctx.clearRect( 0 , 0 , mk.com.ctx.canvas.width , mk.com.ctx.canvas.height );
+                    mk.com.ctx.clearRect( 0 , 0 , 500, 500 );
                     mk.com.ctx.putImageData(imageData1, 0, 0); // DRAW IMAGE on c0 canvas
-                    // call makeback method
                     mk.com.makeback();
+                    $('#excerpt').text('');
                 } else {
                     $('#excerpt').text('Pic has two few colors ?');
                 }
