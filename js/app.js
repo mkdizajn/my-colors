@@ -145,7 +145,7 @@ mk.com = {
 
                 mk.com.ctx.drawImage(image, 0, 0, dim2, image.height / dim1);
                 // smaller image
-                var imageData = mk.com.ctx.getImageData(0, 0, dim1, image.height / dim1);
+                var imageData = mk.com.ctx.getImageData(0, 0, dim1, dim2 );
                 // original image
                 var imageData1 = mk.com.ctx.getImageData(0, 0, image.width, image.height );
                 var d = imageData.data;
