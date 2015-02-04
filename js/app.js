@@ -145,9 +145,9 @@ mk.com = {
 
                 mk.com.ctx.drawImage(image, 0, 0, dim2, image.height / dim1);
                 // smaller image
-                var imageData = mk.com.ctx.getImageData(0, 0, dim1, dim2 );
+                var imageData = mk.com.ctx.getImageData(0, 0, dim1, image.height / dim1);
                 // original image
-                var imageData1 = mk.com.ctx.getImageData(0, 0, image.width, image.height );
+                // var imageData1 = mk.com.ctx.getImageData(0, 0, image.width, image.height );
                 var d = imageData.data;
 
                 r = g = b = temp = [];
@@ -171,7 +171,7 @@ mk.com = {
                 if( nodups.length > 5 ){
                     mk.com.ctx.clearRect( 0 , 0 , 500, 500 );
                     // mk.com.ctx.save();
-                    mk.com.ctx.putImageData(imageData, 0, 0); // DRAW IMAGE on c0 canvas
+                    mk.com.ctx.drawImage(image, 0, 0, dim2, image.height / dim1);
                     mk.com.makeback();
                     $('#excerpt').text('');
                 } else {
