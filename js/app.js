@@ -279,9 +279,15 @@ if ( mk.com.tests.dnd ) {
     mk.com.holder.onclick = function(e) {
         this.className = '';
         e.preventDefault();
-        mk.com.readfiles(e.dataTransfer.files);
+        $('#fpick').click();
     }
 }
+
+$('#fpick').on('change', function(event){
+    if( event.target.files.length == 1 ){
+        mk.com.readfiles( event.target.files[0] );
+    }
+});
 
 /**
  * clear area and back
