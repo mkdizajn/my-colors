@@ -1,19 +1,23 @@
 My colors
 =========
 
-'My colors' is a service that will generate the most used colors in your picture. 
+'My colors' is a single page app that will generate the most used colors in your image. 
 
 ```
-  ┬┌┬┐┌─┐   ┌─┐┌─┐┌─┐
-  │││││ ┬───│  └─┐└─┐
-  ┴┴ ┴└─┘   └─┘└─┘└─┘
+   ___     ___           ___      ___      ___   ___      ___      ___   
+  /\__\   /\__\         /\  \    /\  \    /\__\ /\  \    /\  \    /\  \  
+ /::L_L_ |::L__L       /::\  \  /::\  \  /:/  //::\  \  /::\  \  /::\  \ 
+/:/L:\__\|:::\__\     /:/\:\__\/:/\:\__\/:/__//:/\:\__\/::\:\__\/\:\:\__\
+\/_/:/  //:;;/__/     \:\ \/__/\:\/:/  /\:\  \\:\/:/  /\;:::/  /\:\:\/__/
+  /:/  / \/__/         \:\__\   \::/  /  \:\__\\::/  /  |:\/__/  \::/  / 
+  \/__/                 \/__/    \/__/    \/__/ \/__/    \|__|    \/__/  
 ```
 
 
 Using it
 ----------
 
-Drag & drop image to canvas on a page and I will generate some code for embad-ing on your page
+Drag & drop image to canvas on a page or pick it with file chooser.
 
 Columns meaning
 -----------------------
