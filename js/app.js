@@ -276,6 +276,11 @@ if ( mk.com.tests.dnd ) {
         e.preventDefault();
         mk.com.readfiles(e.dataTransfer.files);
     }
+    mk.com.holder.onclick = function(e) {
+        this.className = '';
+        e.preventDefault();
+        mk.com.readfiles(e.dataTransfer.files);
+    }
 }
 
 /**
