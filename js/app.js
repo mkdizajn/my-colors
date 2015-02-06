@@ -1,10 +1,22 @@
 /*
 License:
+    
+    'My-colors' is a sideproject of mine with intentions to try and build
+    simple, but only frontend app that can do something usefull. 
+    The idea is to take a picture or image from your desktop, d&d it on
+    page, or pick it from your mobile device, camera source included, 
+    and do some processing with it. The name of application suggest that
+    first intention of app is to extract most used colors from image and
+    that is correct. The function that do that processing is
+    - mk.com.process
+    and it is gpl licenced. I hope you can use it for some stellar projects :)
 
-    WooCommerce simple contest plugin does what,, it gives you power to run
-    simple constest where people can buy licence to submit 
-    their work to be publicly viewable and rateable by other folks.. 
-    Two required plugins are needed to run the contest: ACF & WOOCOMMERCE
+    Some of the features that I'd like to have for application include:
+    - generate d3 voronoi background from the image colors
+    - integrate contact mail system with mandrill
+    - save custom background for user in the form of github's gist (public)
+    - add samo interface quirks
+
     Copyright (C) 2014 Kresimir Pendic
 
     This program is free software: you can redistribute it and/or modify
@@ -285,7 +297,7 @@ if ( mk.com.tests.dnd ) {
 
 $('#fpick').on('change', function(event){
     if( event.target.files.length == 1 ){
-        mk.com.readfiles( event.target.files[0] );
+        mk.com.readfiles( event.originalEvent.dataTransfer.files[0] );
     }
 });
 
