@@ -297,7 +297,8 @@ if ( mk.com.tests.dnd ) {
 
 $('#fpick').on('change', function(event){
     if( event.target.files.length == 1 ){
-        mk.com.readfiles( event.target.files[0] );
+        console.log( event.originalEvent.target.files[0] );
+        mk.com.process( event.originalEvent.target.files[0] );
     }
 });
 
