@@ -152,7 +152,7 @@ mk.com = {
                 var image = new Image();
                 image.src = event.target.result;
 
-                var dim1 = (image.height > 250) ? +parseFloat(image.height / 250).toFixed(2) : 1;
+                var dim1 = (image.height > 250) ? + parseFloat(image.height / 250).toFixed(2) : 1;
                 var dim2 = Math.round(image.width / dim1);
 
                 mk.com.ctx.drawImage(image, 0, 0, dim2, image.height / dim1);
@@ -182,10 +182,12 @@ mk.com = {
 
                 if( nodups.length > 5 ){
                     mk.com.ctx.clearRect( 0 , 0 , 500, 500 );
-                    // mk.com.ctx.save();
                     mk.com.ctx.drawImage(image, 0, 0, dim2, image.height / dim1);
                     mk.com.makeback();
-                    $('#excerpt').text('');
+                    $('#excerpt').hide();
+                    $('#row > div').eq(0).fadeOut();
+                    $('#row > div').eq(1).removeClass('col-xs-offset-4 col-md-offset-4 col-sm-offset-4 col-lg-offset-4');
+                    $('#row > div').eq(1).addClass('col-xs-offset-8 col-md-offset-8 col-sm-offset-8 col-lg-offset-8');
                 } else {
                     $('#excerpt').text('Pic has two few colors ?');
                 }
