@@ -152,12 +152,12 @@ mk.com = {
                 var image = new Image();
                 image.src = event.target.result;
 
-                var dim1 = (image.height > 150) ? + parseFloat(image.height / 150).toFixed(2) : 1;
+                var dim1 = (image.height > 200) ? + parseFloat(image.height / 200).toFixed(2) : 1;
                 var dim2 = Math.round(image.width / dim1);
 
                 mk.com.ctx.drawImage(image, 0, 0, dim2, image.height / dim1);
                 // smaller image
-                var imageData = mk.com.ctx.getImageData(0, 0, dim1, image.height / dim1);
+                var imageData = mk.com.ctx.getImageData(0, 0, dim2, image.height / dim1);
                 // original image
                 // var imageData1 = mk.com.ctx.getImageData(0, 0, image.width, image.height );
                 var d = imageData.data;
@@ -298,7 +298,6 @@ if ( mk.com.tests.dnd ) {
 
 $('#fpick').on('change', function(event){
     if( event.target.files.length == 1 ){
-        console.log( event.originalEvent.target.files[0] );
         mk.com.process( event.originalEvent.target.files[0] );
     }
 });
