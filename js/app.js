@@ -152,7 +152,7 @@ mk.com = {
                 var image = new Image();
                 image.src = event.target.result;
 
-                var dim1 = (image.height > 250) ? + parseFloat(image.height / 250).toFixed(2) : 1;
+                var dim1 = (image.height > 150) ? + parseFloat(image.height / 150).toFixed(2) : 1;
                 var dim2 = Math.round(image.width / dim1);
 
                 mk.com.ctx.drawImage(image, 0, 0, dim2, image.height / dim1);
@@ -186,8 +186,6 @@ mk.com = {
                     mk.com.makeback();
                     $('#excerpt').hide();
                     $('#row > div').eq(0).fadeOut();
-                    $('#row > div').eq(1).removeClass('col-xs-offset-4 col-md-offset-4 col-sm-offset-4 col-lg-offset-4');
-                    $('#row > div').eq(1).addClass('col-xs-offset-8 col-md-offset-8 col-sm-offset-8 col-lg-offset-8');
                 } else {
                     $('#excerpt').text('Pic has two few colors ?');
                 }
@@ -204,7 +202,8 @@ mk.com = {
             simulate = true,
             zoomToAdd = true,
             // https://github.com/mbostock/d3/blob/master/lib/colorbrewer/colorbrewer.js#L105
-            color = d3.scale.quantize().domain([10000, 7250]).range(["#dadaeb","#bcbddc","#9e9ac8","#807dba","#6a51a3","#54278f","#3f007d"])
+            color = d3.scale.quantize().domain([10000, 7250]).
+                range(["#dadaeb","#bcbddc","#9e9ac8","#807dba","#6a51a3","#54278f","#3f007d"])
 
         var numVertices = (w*h) / 3000;
         var vertices = d3.range(numVertices).map(function(i) {
