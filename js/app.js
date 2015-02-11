@@ -1,21 +1,21 @@
 /*
 License:
     
-    'My-colors' is a sideproject of mine with intentions to try and build
-    simple, but only frontend app that can do something usefull. 
+    'My-colors' is a sideproject of mine with intention to try and build
+    simple, but only frontend app that can do something fun & usefull. 
     The idea is to take a picture or image from your desktop, d&d it on
-    page, or pick it from your mobile device, camera source included, 
+    page, or pick it from your mobile device, camera included, 
     and do some processing with it. The name of application suggest that
     first intention of app is to extract most used colors from image and
-    that is correct. The function that do that processing is
-    - mk.com.process
-    and it is gpl licenced. I hope you can use it for some stellar projects :)
+    generate some cool background with that pallete. The function that do 
+    that processing is 'mk.com.process' and it is gpl licenced, so use it. 
+    I hope you can use it for some next stellar project :)
 
-    Some of the features that I'd like to have for application include:
+    Some of the features that I'd like to have on roadmap for app include:
     - generate d3 voronoi background from the image colors
-    - integrate contact mail system with mandrill
+    - integrate contact mail system with mandrill (client only mail sending)
     - save custom background for user in the form of github's gist (public)
-    - add samo interface quirks
+    - add more interface quirks
 
     Copyright (C) 2014 Kresimir Pendic
 
@@ -108,8 +108,8 @@ mk.com = {
     // method to render background. accepts array of colors
     makeback: function(){
 
-        var niz = [];
-        for( var j = 0; j < 5; j++){
+        window.niz = [];
+        for( var j = 0; j < 7; j++){
             niz.push( mk.com.random(0, nodups.length - 1 ) );
         }
 
@@ -195,6 +195,7 @@ mk.com = {
     },  // end process 
     processvoronoi: function(){
 
+
         var w = $('#app-main').width(),//window.innerWidth > 960 ? 960 : (window.innerWidth || 960),
             h = $('#app-main').height(),//window.innerHeight > 500 ? 500 : (window.innerHeight || 500),
             radius = 5.25,
@@ -203,7 +204,7 @@ mk.com = {
             zoomToAdd = true,
             // https://github.com/mbostock/d3/blob/master/lib/colorbrewer/colorbrewer.js#L105
             color = d3.scale.quantize().domain([10000, 7250]).
-                range(["#dadaeb","#bcbddc","#9e9ac8","#807dba","#6a51a3","#54278f","#3f007d"])
+                range(['#'+niz[0],'#'+niz[1],'#'+niz[2],'#'+niz[3],'#'+niz[4],'#'+niz[5],'#'+niz[6]])
 
         var numVertices = (w*h) / 3000;
         var vertices = d3.range(numVertices).map(function(i) {
