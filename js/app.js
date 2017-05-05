@@ -154,7 +154,7 @@ mk.com = {
 				image.onload = function(){
 					var dim1 = (image.height > 200) ? + parseFloat(image.height / 200).toFixed(2) : 1;
 					var nW = image.width / dim1;
-					var nW = image.height / dim1;
+					var nH = image.height / dim1;
 
 	                mk.com.ctx.drawImage(image, 0, 0, nW, nH);
 	                // smaller image
