@@ -153,11 +153,12 @@ mk.com = {
                 image.src = event.target.result;
 				image.onload = function(){
 					var dim1 = (image.height > 200) ? + parseFloat(image.height / 200).toFixed(2) : 1;
-					var dim2 = Math.round(image.width / dim1);
+					var nW = image.width / dim1;
+					var nW = image.height / dim1;
 
-	                mk.com.ctx.drawImage(image, 0, 0, dim2, image.height / dim1);
+	                mk.com.ctx.drawImage(image, 0, 0, nW, nH);
 	                // smaller image
-	                var imageData = mk.com.ctx.getImageData(0, 0, dim2, image.height / dim1);
+	                var imageData = mk.com.ctx.getImageData(0, 0, nW, nH);
 	                // original image
 	                // var imageData1 = mk.com.ctx.getImageData(0, 0, image.width, image.height );
 	                var d = imageData.data;
@@ -182,7 +183,7 @@ mk.com = {
 
 	                if( nodups.length > 5 ){
 	                    mk.com.ctx.clearRect( 0 , 0 , 500, 500 );
-	                    mk.com.ctx.drawImage(image, 0, 0, dim2, image.height / dim1);
+	                    mk.com.ctx.drawImage(image, 0, 0, nW, nH);
 	                    mk.com.makeback();
 	                    $('#excerpt').hide();
 	                    $('#row > div').eq(0).fadeOut();
