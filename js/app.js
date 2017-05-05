@@ -151,44 +151,47 @@ mk.com = {
             reader.onload = function(event) {
                 var image = new Image();
                 image.src = event.target.result;
-		image.onload = function(){
-                    var dim1 = (image.height > 200) ? + parseFloat(image.height / 200).toFixed(2) : 1;
-	            var dim2 = Math.round(image.width / dim1);
-		}
-                mk.com.ctx.drawImage(image, 0, 0, dim2, image.height / dim1);
-                // smaller image
-                var imageData = mk.com.ctx.getImageData(0, 0, dim2, image.height / dim1);
-                // original image
-                // var imageData1 = mk.com.ctx.getImageData(0, 0, image.width, image.height );
-                var d = imageData.data;
 
-                r = g = b = temp = [];
+				image.onload = function(){
+					var dim1 = (image.height > 200) ? + parseFloat(image.height / 200).toFixed(2) : 1;
+					var dim2 = Math.round(image.width / dim1);
 
-                for (var i = 0; i < d.length; i += 4) {
-                    r = d[i];
-                    g = d[i + 1];
-                    b = d[i + 2];
-                    temp.push(mk.com.padLeft((r),3) + mk.com.padLeft((g),3) + mk.com.padLeft((b),3));
-                }
+	                mk.com.ctx.drawImage(image, 0, 0, dim2, image.height / dim1);
+	                // smaller image
+	                var imageData = mk.com.ctx.getImageData(0, 0, dim2, image.height / dim1);
+	                // original image
+	                // var imageData1 = mk.com.ctx.getImageData(0, 0, image.width, image.height );
+	                var d = imageData.data;
 
-                // remove dups,, 
-                nodups = counts = [];
-                for (var i = 0; i < temp.length; i++) {
-                    var num = temp[i];
-                    counts[num] = counts[num] ? counts[num] + 1 : 1;
-                }
-                // global var that will be filled with colors from your image
-                window.nodups = Object.keys(counts).sort().reverse(); // colors array distinct
+	                r = g = b = temp = [];
 
-                if( nodups.length > 5 ){
-                    mk.com.ctx.clearRect( 0 , 0 , 500, 500 );
-                    mk.com.ctx.drawImage(image, 0, 0, dim2, image.height / dim1);
-                    mk.com.makeback();
-                    $('#excerpt').hide();
-                    $('#row > div').eq(0).fadeOut();
-                } else {
-                    $('#excerpt').text('Pic has two few colors ?');
-                }
+	                for (var i = 0; i < d.length; i += 4) {
+	                    r = d[i];
+	                    g = d[i + 1];
+	                    b = d[i + 2];
+	                    temp.push(mk.com.padLeft((r),3) + mk.com.padLeft((g),3) + mk.com.padLeft((b),3));
+	                }
+
+	                // remove dups,, 
+	                nodups = counts = [];
+	                for (var i = 0; i < temp.length; i++) {
+	                    var num = temp[i];
+	                    counts[num] = counts[num] ? counts[num] + 1 : 1;
+	                }
+	                // global var that will be filled with colors from your image
+	                window.nodups = Object.keys(counts).sort().reverse(); // colors array distinct
+
+	                if( nodups.length > 5 ){
+	                    mk.com.ctx.clearRect( 0 , 0 , 500, 500 );
+	                    mk.com.ctx.drawImage(image, 0, 0, dim2, image.height / dim1);
+	                    mk.com.makeback();
+	                    $('#excerpt').hide();
+	                    $('#row > div').eq(0).fadeOut();
+	                } else {
+	                    $('#excerpt').text('Pic has two few colors ?');
+	                }
+				}
+
             };
             reader.readAsDataURL(file);
         } // end if tests are ok!
