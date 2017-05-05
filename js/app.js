@@ -151,7 +151,6 @@ mk.com = {
             reader.onload = function(event) {
                 var image = new Image();
                 image.src = event.target.result;
-
 				image.onload = function(){
 					var dim1 = (image.height > 200) ? + parseFloat(image.height / 200).toFixed(2) : 1;
 					var dim2 = Math.round(image.width / dim1);
