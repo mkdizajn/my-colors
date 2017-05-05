@@ -151,10 +151,10 @@ mk.com = {
             reader.onload = function(event) {
                 var image = new Image();
                 image.src = event.target.result;
-
-                var dim1 = (image.height > 200) ? + parseFloat(image.height / 200).toFixed(2) : 1;
-                var dim2 = Math.round(image.width / dim1);
-
+		image.onload = function(){
+                    var dim1 = (image.height > 200) ? + parseFloat(image.height / 200).toFixed(2) : 1;
+	            var dim2 = Math.round(image.width / dim1);
+		}
                 mk.com.ctx.drawImage(image, 0, 0, dim2, image.height / dim1);
                 // smaller image
                 var imageData = mk.com.ctx.getImageData(0, 0, dim2, image.height / dim1);
